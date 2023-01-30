@@ -13,10 +13,9 @@ use App\http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+route::get('/',[HomeController::class,'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::middleware([
     'auth:sanctum',
