@@ -36,5 +36,7 @@ Route::prefix('admin/')->middleware([
     'isAdmin'
 ])->group(function () {
     route::get('catagories',[AdminController::class,'catagories'])->name('catagories');
+    route::post('createcatagory',[AdminController::class,'CreateCatagory'])->name('AddCatagory');
+
 });
 
