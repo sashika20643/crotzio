@@ -86,14 +86,28 @@
                            <i class="fa fa-search" aria-hidden="true"></i>
                            </button>
                         </form>
+                        @if (Route::has('login'))
+
+                            @auth
+                            <li class="nav-item ml-2 ">
+                                <a class="nav-link btn btn-primary btnx mr-2" href="/login" >Dashboard</a>
+                             </li>
+                            @else
+                            <li class="nav-item ml-2 ">
+                                <a class="nav-link btn btn-primary btnx mr-2" href="/login" >Login</a>
+                             </li>
+
+                                @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link btn btnx btn-primary" href="/register">Register</a>
+                                 </li>
+                                @endif
+                            @endauth
+
+                    @endif
 
 
-                        <li class="nav-item ml-2 ">
-                            <a class="nav-link btn btn-primary btnx mr-2" href="/login" >Login</a>
-                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link btn btnx btn-primary" href="/register">Register</a>
-                         </li>
+
                      </ul>
                   </div>
                </nav>
