@@ -38,6 +38,9 @@ Route::prefix('admin/')->middleware([
     route::get('catagories',[AdminController::class,'catagories'])->name('catagories');
     route::post('createcatagory',[AdminController::class,'CreateCatagory'])->name('AddCatagory');
     route::get('deletecatagory/{id}',[AdminController::class,'DeleteCatagory'])->name('DeleteCatagory');
+    route::get('addproductview',[AdminController::class,'AddProductview'])->name('addProductview');
+    route::post('addproduct',[AdminController::class,'addproduct'])->name('addproduct');
+
 
 });
 
