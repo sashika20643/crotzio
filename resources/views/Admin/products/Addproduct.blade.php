@@ -25,14 +25,7 @@
    @endforeach
 @endif
 
-@if($errors->has('cname'))
 
-<div class="alert alert-danger">
-    <button type="button" class="close" data-dismiss='alert' area-hidden='true'>X</button>
-    {{ $errors->first('cname') }}
-</div>
-
-@endif
 <h2 class="text-center mb-3">
    Add New Product
 </h2>
@@ -65,7 +58,7 @@
                 <label>catagory</label>
                 <select class="js-example-basic-single" name="catagory" style="width:100%">
                  @foreach ($catagories as $cat )
-                 <option value="{{$cat->id}}">{{$cat->name}}</option>
+                 <option value="{{$cat->name}}">{{$cat->name}}</option>
                  @endforeach
 
 

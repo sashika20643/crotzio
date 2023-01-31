@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\http\Controllers\HomeController;
 use App\http\Controllers\AdminController;
+use App\http\Controllers\Admin\CatagoryController;
+
+use App\http\Controllers\Admin\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,11 +38,19 @@ Route::prefix('admin/')->middleware([
     'verified',
     'isAdmin'
 ])->group(function () {
-    route::get('catagories',[AdminController::class,'catagories'])->name('catagories');
-    route::post('createcatagory',[AdminController::class,'CreateCatagory'])->name('AddCatagory');
-    route::get('deletecatagory/{id}',[AdminController::class,'DeleteCatagory'])->name('DeleteCatagory');
-    route::get('addproductview',[AdminController::class,'AddProductview'])->name('addProductview');
-    route::post('addproduct',[AdminController::class,'addproduct'])->name('addproduct');
+    // ..........catagory routes...........
+    route::get('catagories',[CatagoryController::class,'catagories'])->name('catagories');
+    route::post('createcatagory',[CatagoryController::class,'CreateCatagory'])->name('AddCatagory');
+    route::get('deletecatagory/{id}',[CatagoryController::class,'DeleteCatagory'])->name('DeleteCatagory');
+
+    // ..........product routes...........
+    route::get('addproductview',[ProductController::class,'AddProductview'])->name('addProductview');
+    route::post('addproduct',[ProductController::class,'addproduct'])->name('addproduct');
+    route::get('allproductsview',[ProductController::class,'allproductview'])->name('allproducts');
+    route::get('deleteproduct/{id}',[ProductController::class,'DeleteProduct'])->name('DeleteProduct');
+    route::get('editproduct/{id}',[ProductController::class,'EditProduct'])->name('EditProduct');
+    route::post('updateproduct',[ProductController::class,'updateproduct'])->name('updateproduct');
+
 
 
 });
