@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\http\Controllers\HomeController;
+use App\http\Controllers\shop\ShopController;
 use App\http\Controllers\AdminController;
 use App\http\Controllers\Admin\CatagoryController;
 
@@ -16,8 +17,10 @@ use App\http\Controllers\Admin\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-route::get('/',[HomeController::class,'index']);
 
+//.........shop...........
+route::get('/',[ShopController::class,'index'])->name('shophome');
+route::get('/products',[ShopController::class,'productsview'])->name('productpage');
 
 
 Route::middleware([
