@@ -39,6 +39,7 @@ Route::middleware([
     route::get('/Addqty/{id}',[ShopController::class,'Addqty'])->name('Addqty');
     route::get('/Minqty/{id}',[ShopController::class,'Minqty'])->name('Minqty');
     route::get('/purchesoption',[ShopController::class,'purchesoption'])->name('purchesoption');
+    route::post('/addorder',[ShopController::class,'addorder'])->name('addorder');
 
 
 

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\ProductOrder;
 use Auth;
 
 class ShopController extends Controller
@@ -120,5 +122,40 @@ return redirect()->back();
     $user=Auth::user();
     return view('common.purchesoption')->with('count',$count)->with('user',$user)->with('total',$total);
    }
+public function addorder(Request $request){
+if($request->payment=="deliver"){
+    $cart=Cart::where('u_id',Auth::user()->id)->get();
+    $order=new Order;
+
+$order->u_name=$request->name;
+$order->adress=$request->adress;
+$order->email=$request->email;
+$order->phone=$request->phone_number;
+$order->u_id=Auth::user()->id;
+$order->paymet_status="Not payed";
+$order->deliver_status="Not deliverd";
+$order->save();
+foreach ($cart as $item) {
+    $productOrder= new ProductOrder;
+    $productOrder->o_id=$order->id;
+    $productOrder->p_id=$item->p_id;
+    $productOrder->product_name=$item->product_title;
+    $productOrder->quantity=$item->quantity;
+    $productOrder->image=$item->image;
+    $productOrder->price=$item->price;
+    $productOrder->save();
+
+
+}
+
+
+$cart=Cart::where('u_id',Auth::user()->id);
+$cart->delete();
+
+return redirect(route('productpage'));
+}
+
+}
+
 
 }
