@@ -83,7 +83,7 @@
                     <td></td>
                     <td><h4> Total :</h4></td>
                         <td><h4 style="color:red"> {{$total}}/=</h4> </td>
-                        <td><a href="" class="btn btn-success">Purches</a></td>
+                        <td><a href="{{route('purchesoption')}}" class="btn btn-success">Purches</a></td>
                     </tr>
                   </tbody>
                 </table>

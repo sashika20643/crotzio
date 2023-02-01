@@ -35,10 +35,10 @@ Route::middleware([
     })->name('dashboard');
     route::post('/addtocart/{id}',[ShopController::class,'addtocart'])->name('addtocart');
     route::get('/cart',[ShopController::class,'showcart'])->name('cart');
-    route::get('deletecart/{id}',[ShopController::class,'DeleteCart'])->name('DeleteCart');
-    route::get('Addqty/{id}',[ShopController::class,'Addqty'])->name('Addqty');
-    route::get('Minqty/{id}',[ShopController::class,'Minqty'])->name('Minqty');
-
+    route::get('/deletecart/{id}',[ShopController::class,'DeleteCart'])->name('DeleteCart');
+    route::get('/Addqty/{id}',[ShopController::class,'Addqty'])->name('Addqty');
+    route::get('/Minqty/{id}',[ShopController::class,'Minqty'])->name('Minqty');
+    route::get('/purchesoption',[ShopController::class,'purchesoption'])->name('purchesoption');
 
 
 

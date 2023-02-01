@@ -113,4 +113,12 @@ return redirect()->back();
 
     }
 
+
+   public function purchesoption (){
+    $count=Cart::where('u_id',Auth::user()->id)->get()->count();
+    $total=Cart::where('u_id',Auth::user()->id)->first()->sum('total');
+    $user=Auth::user();
+    return view('common.purchesoption')->with('count',$count)->with('user',$user)->with('total',$total);
+   }
+
 }
