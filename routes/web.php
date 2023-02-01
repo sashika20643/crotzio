@@ -23,6 +23,8 @@ route::get('/',[ShopController::class,'index'])->name('shophome');
 route::get('/products',[ShopController::class,'productsview'])->name('productpage');
 
 
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -32,6 +34,12 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     route::post('/addtocart/{id}',[ShopController::class,'addtocart'])->name('addtocart');
+    route::get('/cart',[ShopController::class,'showcart'])->name('cart');
+    route::get('deletecart/{id}',[ShopController::class,'DeleteCart'])->name('DeleteCart');
+    route::get('Addqty/{id}',[ShopController::class,'Addqty'])->name('Addqty');
+    route::get('Minqty/{id}',[ShopController::class,'Minqty'])->name('Minqty');
+
+
 
 
 });

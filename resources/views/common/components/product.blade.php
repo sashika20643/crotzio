@@ -16,7 +16,7 @@
                 <a href="" class="option1">
                   {{$product->catagory}}
                 </a>
-                <a href="{{route('addtocart')}}" class="option2">
+                <a href="{{route('addtocart',$product->id)}}" class="option2">
                 Buy Now
                 </a>
              </div>

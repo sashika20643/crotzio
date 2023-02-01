@@ -26,7 +26,15 @@
                         </li>
 
                         <li class="nav-item ml-5">
-                           <a class="nav-link" href="#">
+
+                           <a class="nav-link" href="{{route('cart')}}">
+
+                            <div style="padding: 0;margin:0;width:fit-content; height:fit-content;position: relative;">
+
+                                <div class="shape" style="display:flex;justify-content:center;align-items:center; position: absolute;transform:translate(50%,-50%);width:20px;height:20px;font-size:15px;border-radius:50%; color:white;background-color:brown">
+{{$count}}
+
+                                </div>
                               <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                                  <g>
                                     <g>
@@ -79,7 +87,9 @@
                                  <g>
                                  </g>
                               </svg>
+                            </div>
                            </a>
+
                         </li>
                         <form class="form-inline">
                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">

@@ -15,13 +15,15 @@ class ShopController extends Controller
     public function index(){
 
         $products=Product::all()->take(10);
-        return view('common.index')->with('products',$products);
+        $count=Cart::where('u_id',Auth::user()->id)->get()->count();
+        return view('common.index')->with('products',$products)->with('count',$count);
     }
 
 
     public function productsview(){
-        $products=Product::paginate(20);
-return view('common.product')->with('products',$products);
+        $products=Product::where('quantity','>','0')->paginate(20);
+        $count=Cart::where('u_id',Auth::user()->id)->get()->count();
+return view('common.product')->with('products',$products)->with('count',$count);
 
     }
 
@@ -50,9 +52,65 @@ else{
 
 }
 
-return $cart;
+return redirect()->back();
 
     }
 
+    public function showcart(){
+
+        $cart=Cart::where('u_id',Auth::user()->id)->get();
+        $count=$cart->count();
+
+        return view('common.cart')->with('cart',$cart)->with('count',$count);
+
+
+    }
+
+
+    public function DeleteCart($id){
+        $cart=Cart::find($id);
+        $cart->delete();
+        return redirect()->back();
+
+
+
+    }
+
+    public function Addqty($id){
+
+        $cart=Cart::find($id);
+        $product=Product::where('id',$cart->p_id)->first();
+
+        if(0<$product->quantity){
+            $cart->quantity +=1;
+            $cart->total=$cart->price*$cart->quantity;
+            $product->quantity -=1;
+            $product->save();
+            $cart->save();
+        }
+
+
+        return redirect()->back();
+
+
+
+    }
+    public function Minqty($id){
+        $cart=Cart::find($id);
+        $product=Product::where('id',$cart->p_id)->first();
+        if($cart->quantity>0){
+            $cart->quantity -=1;
+            $cart->total=$cart->price*$cart->quantity;
+            $product->quantity +=1;
+            $product->save();
+        }
+
+
+        $cart->save();
+        return redirect()->back();
+
+
+
+    }
 
 }
