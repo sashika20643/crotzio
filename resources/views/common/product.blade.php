@@ -30,9 +30,14 @@
                       <a class="option1" data-toggle="modal" data-target="#model{{$product->id}}">
                         Show details
                       </a>
-                      <a href="" class="option2">
-                      Buy Now
-                      </a>
+                      <form action="{{route('addtocart',$product->id)}}" method="POST">
+                        @csrf
+                        <input type="number" name="quantity" id="" min="1" max="{{$product->quantity}}" value="1" hidden="true">
+                        <input type="submit" value=" Add to cart"  class="option2">
+
+
+                      </form>
+
                    </div>
                 </div>
                 <div class="img-box">
@@ -81,13 +86,18 @@
 
                 <h6>original price: <span style="color: blue"> {{$product->price}}/= </span></h6>
                 <h6>Discount price: <span style="color: green"> {{$product->discount_price}}/= </span></h6>
+
+                <form action="{{route('addtocart',$product->id)}}" method="POST">
+                    @csrf
+                    <input type="number" min="1" max="{{$product->quantity}}" name="quantity" id="" value="1" >
+                    <input type="submit" value=" Add to cart"  class="option2">
+
+
+                  </form>
              </div>
 
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Add to cart</button>
-        </div>
+
       </div>
     </div>
   </div>

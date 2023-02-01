@@ -16,7 +16,7 @@
                 <a href="" class="option1">
                   {{$product->catagory}}
                 </a>
-                <a href="" class="option2">
+                <a href="{{route('addtocart')}}" class="option2">
                 Buy Now
                 </a>
              </div>
@@ -45,7 +45,7 @@
     @endforeach
 </div>
        <div class="btn-box">
-          <a href="">
+          <a href="{{route('productpage')}}">
           View All products
           </a>
        </div>

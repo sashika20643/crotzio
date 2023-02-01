@@ -31,6 +31,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    route::post('/addtocart/{id}',[ShopController::class,'addtocart'])->name('addtocart');
+
+
 });
 
 route::get('/home',[HomeController::class,'redirect']);
