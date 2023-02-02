@@ -19,7 +19,7 @@ class ShopController extends Controller
 
     public function index(){
 
-        $products=Product::all()->take(10);
+        $products=Product::where('quantity','>','0')->take(10);
         $count=0;
         if(Auth::check()){
             $count=Cart::where('u_id',Auth::user()->id)->get()->count();

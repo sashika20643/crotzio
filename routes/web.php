@@ -5,6 +5,8 @@ use App\http\Controllers\HomeController;
 use App\http\Controllers\shop\ShopController;
 use App\http\Controllers\AdminController;
 use App\http\Controllers\Admin\CatagoryController;
+use App\http\Controllers\Admin\OrderController;
+
 
 use App\http\Controllers\Admin\ProductController;
 /*
@@ -30,14 +32,20 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+
+    //.....................customer dashboard..............
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    //..............cart...................
     route::post('/addtocart/{id}',[ShopController::class,'addtocart'])->name('addtocart');
     route::get('/cart',[ShopController::class,'showcart'])->name('cart');
     route::get('/deletecart/{id}',[ShopController::class,'DeleteCart'])->name('DeleteCart');
     route::get('/Addqty/{id}',[ShopController::class,'Addqty'])->name('Addqty');
     route::get('/Minqty/{id}',[ShopController::class,'Minqty'])->name('Minqty');
+
+    //..............purches.................
     route::get('/purchesoption',[ShopController::class,'purchesoption'])->name('purchesoption');
     route::post('/addorder',[ShopController::class,'addorder'])->name('addorder');
     Route::post('/stripe/{total}', [ShopController::class,'stripePost'])->name('stripe.post');
@@ -66,6 +74,13 @@ Route::prefix('admin/')->middleware([
     route::get('deleteproduct/{id}',[ProductController::class,'DeleteProduct'])->name('DeleteProduct');
     route::get('editproduct/{id}',[ProductController::class,'EditProduct'])->name('EditProduct');
     route::post('updateproduct',[ProductController::class,'updateproduct'])->name('updateproduct');
+
+
+//...................orders.......................
+
+    route::get('orders',[OrderController::class,'orders'])->name('orders');
+    route::get('completeorder/{id}',[OrderController::class,'completeorder'])->name('completeorder');
+    route::get('completepayment/{id}',[OrderController::class,'completepayment'])->name('completepayment');
 
 
 
