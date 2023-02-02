@@ -171,8 +171,11 @@ foreach ($cart as $item) {
 
 if($request->payment=="deliver"){
     $cart=Cart::where('u_id',Auth::user()->id);
-$cart->delete();
+// $cart->delete();
 Session::flash('success', 'Payment successful!');
+$total=Cart::where('u_id',Auth::user()->id)->first()->sum('total');
+$poder=ProductOrder::where('o_id',$order->id)->get();
+return view('email.invoice')->with('total',$total)->with('productorder',$poder);
     return redirect(route('productpage'));
 
 }

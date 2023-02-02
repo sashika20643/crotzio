@@ -34,6 +34,8 @@ Route::middleware([
 ])->group(function () {
 
     //.....................customer dashboard..............
+    route::get('/home',[HomeController::class,'redirect']);
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
@@ -54,7 +56,7 @@ Route::middleware([
 
 });
 
-route::get('/home',[HomeController::class,'redirect']);
+
 
 Route::prefix('admin/')->middleware([
     'auth:sanctum',
@@ -81,6 +83,7 @@ Route::prefix('admin/')->middleware([
     route::get('orders',[OrderController::class,'orders'])->name('orders');
     route::get('completeorder/{id}',[OrderController::class,'completeorder'])->name('completeorder');
     route::get('completepayment/{id}',[OrderController::class,'completepayment'])->name('completepayment');
+    route::get('printorder/{id}',[OrderController::class,'printorder'])->name('printorder');
 
 
 

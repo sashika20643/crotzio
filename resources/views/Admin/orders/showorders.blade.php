@@ -29,9 +29,50 @@
                   <th> Total </th>
                   <th> payment status </th>
                   <th> delivery status </th>
+
                 </tr>
               </thead>
               <tbody>
+                <tr>
+
+                    <td> </td>
+                    <td>  </td>
+                    <td> </td>
+                    <td>  </td>
+                    <td> </th>
+                    <td>
+                        <table style="border: none">
+
+                      <tr >
+        <th style="border: none;border-top:none;">
+             id
+        </th>
+
+        <th style="border: none;border-top:none;">
+            product Name
+        </th>
+
+        <th style="border: none;border-top:none;">
+            Img
+        </th>
+        <th style="border: none;border-top:none;">
+            Qty
+        </td>
+        <th style="border: none;border-top:none;">
+            Price
+        </th>
+                      </tr>
+
+
+                    </table>
+
+                    </td>
+
+                    <td>  </td>
+                    <td>  </td>
+                    <td>  </td>
+                    <td>  </td>
+                  </tr>
 
 
                     @foreach ($orders as $item)
@@ -98,6 +139,10 @@
                   </td>
                   <td>
                     <a href="{{route('completeorder',$item->id)}}" onclick="return confirm('Are you sure?')" class="btn btn-outline-warning">Complete</a>
+                  </td>
+
+                  <td>
+                    <a href="{{route('printorder',$item->id)}}"  class="btn btn-outline-primary">PDF</a>
                   </td>
                 </tr>
 
