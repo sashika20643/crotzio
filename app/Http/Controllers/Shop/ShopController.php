@@ -9,6 +9,9 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\ProductOrder;
 use Auth;
+use Session;
+
+use Stripe;
 
 class ShopController extends Controller
 {
@@ -17,14 +20,22 @@ class ShopController extends Controller
     public function index(){
 
         $products=Product::all()->take(10);
-        $count=Cart::where('u_id',Auth::user()->id)->get()->count();
+        $count=0;
+        if(Auth::check()){
+            $count=Cart::where('u_id',Auth::user()->id)->get()->count();
+
+        }
         return view('common.index')->with('products',$products)->with('count',$count);
     }
 
 
     public function productsview(){
         $products=Product::where('quantity','>','0')->paginate(20);
-        $count=Cart::where('u_id',Auth::user()->id)->get()->count();
+        $count=0;
+        if(Auth::check()){
+            $count=Cart::where('u_id',Auth::user()->id)->get()->count();
+
+        }
 return view('common.product')->with('products',$products)->with('count',$count);
 
     }
@@ -123,17 +134,24 @@ return redirect()->back();
     return view('common.purchesoption')->with('count',$count)->with('user',$user)->with('total',$total);
    }
 public function addorder(Request $request){
-if($request->payment=="deliver"){
+
     $cart=Cart::where('u_id',Auth::user()->id)->get();
     $order=new Order;
 
 $order->u_name=$request->name;
 $order->adress=$request->adress;
 $order->email=$request->email;
+$order->postal_code=$request->postal_code;
 $order->phone=$request->phone_number;
 $order->u_id=Auth::user()->id;
-$order->paymet_status="Not payed";
-$order->deliver_status="Not deliverd";
+if($request->payment=="deliver"){
+$order->paymet_status="cash on delivery";}
+else{
+    $order->paymet_status="Not yet";}
+
+
+$order->deliver_status="Processing";
+
 $order->save();
 foreach ($cart as $item) {
     $productOrder= new ProductOrder;
@@ -142,6 +160,7 @@ foreach ($cart as $item) {
     $productOrder->product_name=$item->product_title;
     $productOrder->quantity=$item->quantity;
     $productOrder->image=$item->image;
+
     $productOrder->price=$item->price;
     $productOrder->save();
 
@@ -149,11 +168,56 @@ foreach ($cart as $item) {
 }
 
 
-$cart=Cart::where('u_id',Auth::user()->id);
-$cart->delete();
 
-return redirect(route('productpage'));
+if($request->payment=="deliver"){
+    $cart=Cart::where('u_id',Auth::user()->id);
+$cart->delete();
+Session::flash('success', 'Payment successful!');
+    return redirect(route('productpage'));
+
 }
+
+else{
+    $total=Cart::where('u_id',Auth::user()->id)->first()->sum('total');
+    $count=0;
+
+
+    return view('common.stripe')->with('total',$total)->with('count',$count)->with('o_id',$order->id);
+}
+
+}
+
+public function stripePost(Request $request,$total)
+
+{
+
+    Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+    $o_id=$request->o_id;
+
+
+    Stripe\Charge::create ([
+
+            "amount" => $total * 100,
+
+            "currency" => "usd",
+
+            "source" => $request->stripeToken,
+
+            "description" => "Test payment from itsolutionstuff.com."
+
+    ]);
+
+
+
+    Session::flash('success', 'Payment successful!');
+    $order=Order::find($o_id);
+    $order->paymet_status="Paid";
+    $order->save();
+    $cart=Cart::where('u_id',Auth::user()->id);
+    $cart->delete();
+
+
+    return redirect(route('productpage'));
 
 }
 

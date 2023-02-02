@@ -1,6 +1,20 @@
 @extends('common.layout.shoplayout')
 
 @section('content')
+
+
+@if (Session::has('success'))
+
+<div class="alert alert-success text-center">
+
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+
+    <p>{{ Session::get('success') }}</p>
+
+</div>
+
+@endif
+
 <section class="inner_page_head">
     <div class="container_fuild">
        <div class="row">

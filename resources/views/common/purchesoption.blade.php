@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputUsername1">Postal Code</label>
-                <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Postal Code" name="postal_Code">
+                <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Postal Code" name="postal_code">
             </div>
             <div class="form-group">
                 <label for="exampleInputUsername1">Phone number</label>

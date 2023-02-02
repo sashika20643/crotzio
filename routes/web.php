@@ -40,6 +40,7 @@ Route::middleware([
     route::get('/Minqty/{id}',[ShopController::class,'Minqty'])->name('Minqty');
     route::get('/purchesoption',[ShopController::class,'purchesoption'])->name('purchesoption');
     route::post('/addorder',[ShopController::class,'addorder'])->name('addorder');
+    Route::post('/stripe/{total}', [ShopController::class,'stripePost'])->name('stripe.post');
 
 
 
