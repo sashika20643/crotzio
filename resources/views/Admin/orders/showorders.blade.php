@@ -138,7 +138,7 @@
                     <a href=""  class="btn btn-outline-danger">{{$item->deliver_status}}</a>
                   </td>
                   <td>
-                    <a href="{{route('completeorder',$item->id)}}" onclick="return confirm('Are you sure?')" class="btn btn-outline-warning">Complete</a>
+                    <a href="{{route('completeorder',$item->id)}}" onclick="confirmation(event)" class="btn btn-outline-warning">Complete</a>
                   </td>
 
                   <td>

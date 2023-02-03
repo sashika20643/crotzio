@@ -5,6 +5,9 @@
              Our <span>products</span>
           </h2>
        </div>
+
+
+
 <div class="row">
     @foreach ($products as $product )
 

@@ -8,8 +8,9 @@
       </button>
       <ul class="navbar-nav w-100">
         <li class="nav-item w-100">
-          <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-            <input type="text" class="form-control" placeholder="Search products">
+          <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search" action="{{route('searchp')}}" method="post">
+            @csrf
+            <input type="text" class="form-control" placeholder="Search products" name="searchq">
           </form>
         </li>
       </ul>
@@ -26,7 +27,7 @@
                 </div>
               </div>
               <div class="preview-item-content">
-                <p class="preview-subject ellipsis mb-1">Software Development</p>
+                <p class="preview-subject ellipsis mb-1">Catagory</p>
               </div>
             </a>
             <div class="dropdown-divider"></div>
@@ -37,22 +38,13 @@
                 </div>
               </div>
               <div class="preview-item-content">
-                <p class="preview-subject ellipsis mb-1">UI Development</p>
+                <p class="preview-subject ellipsis mb-1">Product</p>
               </div>
             </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <div class="preview-icon bg-dark rounded-circle">
-                  <i class="mdi mdi-layers text-danger"></i>
-                </div>
-              </div>
-              <div class="preview-item-content">
-                <p class="preview-subject ellipsis mb-1">Software Testing</p>
-              </div>
-            </a>
+
             <div class="dropdown-divider"></div>
-            <p class="p-3 mb-0 text-center">See all projects</p>
+            <p class="p-3 mb-0 text-center">See all products</p>
           </div>
         </li>
         <li class="nav-item nav-settings d-none d-lg-block">
@@ -151,7 +143,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
             <div class="navbar-profile">
-              <img class="img-xs rounded-circle" src="adminasset/assets/images/faces/face15.jpg" alt="">
+              <img class="img-xs rounded-circle" src="{{asset('adminasset/assets/images/faces/face15.jpg')}}" alt="">
               <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ Auth::user()->name }}</p>
               <i class="mdi mdi-menu-down d-none d-sm-block"></i>
             </div>

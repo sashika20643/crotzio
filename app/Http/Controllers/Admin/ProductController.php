@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Catagory;
 use App\Models\Product;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -39,6 +40,7 @@ class ProductController extends Controller
       $request->image->move('product',$imagename);
       $product->image=$imagename;
       $product->save();
+      Alert::success('Product Aded successfully',"You have Aded the Product");
 
       return redirect()->back()->with('massege','Product added successfully');
 
@@ -55,6 +57,8 @@ class ProductController extends Controller
         $product=Product::find($id);
         unlink("product/".$product->first()->image);
         $product->delete();
+        Alert::success('Product deleted successfully',"You have deleted the Product");
+
         return redirect()->back()->with('massege','Product deled successfully');
     }
 
@@ -103,4 +107,13 @@ class ProductController extends Controller
 
 
     }
+
+
+    public function searchp(Request $request){
+        $searchq=$request->searchq;
+        // return $searchq;
+              $products=Product::where('title','LIKE','%%'.$searchq.'%')->get();
+        return view('Admin.products.showproducts')->with('products',$products);
+
+            }
 }

@@ -9,7 +9,14 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-
+        <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" type="">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}" />
+              <!-- font awesome style -->
+              <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" />
+              <!-- Custom styles for this template -->
+              <link href="{{asset('css/style.css')}}" rel="stylesheet" />
+              <!-- responsive style -->
+              <link href="{{asset('css/responsive.css')}}" rel="stylesheet" />
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 

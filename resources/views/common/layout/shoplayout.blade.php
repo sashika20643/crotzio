@@ -10,16 +10,16 @@
       <meta name="keywords" content="" />
       <meta name="description" content="" />
       <meta name="author" content="" />
-      <link rel="shortcut icon" href="images/favicon.png" type="">
       <title>Crotzio - best online shop</title>
       <!-- bootstrap core css -->
-      <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-      <!-- font awesome style -->
-      <link href="css/font-awesome.min.css" rel="stylesheet" />
-      <!-- Custom styles for this template -->
-      <link href="css/style.css" rel="stylesheet" />
-      <!-- responsive style -->
-      <link href="css/responsive.css" rel="stylesheet" />
+      <link rel="shortcut icon" href="{{asset('images/favicon.png')}}" type="">
+      <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}" />
+            <!-- font awesome style -->
+            <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" />
+            <!-- Custom styles for this template -->
+            <link href="{{asset('css/style.css')}}" rel="stylesheet" />
+            <!-- responsive style -->
+            <link href="{{asset('css/responsive.css')}}" rel="stylesheet" />
 
       <style>
         .btnx{
@@ -34,12 +34,15 @@
             color: #a815c2 !important ;
         }
       </style>
+      <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
    </head>
    <body>
+    @include('sweetalert::alert')
       <div class="hero_area">
               <!-- header section strats -->
               @include('common.components.header')
               <!-- end header section -->
+
         @yield('content')
       </div>
     </div>

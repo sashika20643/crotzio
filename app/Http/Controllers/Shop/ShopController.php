@@ -8,8 +8,12 @@ use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\ProductOrder;
+use App\Models\Comment;
+use RealRashid\SweetAlert\Facades\Alert;
 use Auth;
 use Session;
+use App\Mail\invoice;
+use Illuminate\Support\Facades\Mail;
 
 use Stripe;
 
@@ -19,7 +23,7 @@ class ShopController extends Controller
 
     public function index(){
 
-        $products=Product::where('quantity','>','0')->take(10);
+        $products=Product::where('quantity','>','0')->paginate(4);
         $count=0;
         if(Auth::check()){
             $count=Cart::where('u_id',Auth::user()->id)->get()->count();
@@ -30,7 +34,7 @@ class ShopController extends Controller
 
 
     public function productsview(){
-        $products=Product::where('quantity','>','0')->paginate(20);
+        $products=Product::where('quantity','>','0')->paginate(12);
         $count=0;
         if(Auth::check()){
             $count=Cart::where('u_id',Auth::user()->id)->get()->count();
@@ -39,6 +43,23 @@ class ShopController extends Controller
 return view('common.product')->with('products',$products)->with('count',$count);
 
     }
+
+
+
+    public function productsdetailview($id){
+        $products=Product::where('id',$id)->first();
+        $count=0;
+        if(Auth::check()){
+            $count=Cart::where('u_id',Auth::user()->id)->get()->count();
+
+
+        }
+    $comments=Comment::where('p_id',$id)->get();
+return view('common.productdetails')->with('product',$products)->with('count',$count)->with('comments',$comments);
+
+    }
+
+
 
     public function addtocart(Request $request,$id){
 
@@ -64,7 +85,7 @@ else{
     $cart->save();
 
 }
-
+Alert::success('Product Added successfully',"You have added product to cart");
 return redirect()->back();
 
     }
@@ -83,6 +104,8 @@ return redirect()->back();
     public function DeleteCart($id){
         $cart=Cart::find($id);
         $cart->delete();
+Alert::success('Product deleted successfully',"You have removed product to cart");
+
         return redirect()->back();
 
 
@@ -171,11 +194,12 @@ foreach ($cart as $item) {
 
 if($request->payment=="deliver"){
     $cart=Cart::where('u_id',Auth::user()->id);
-// $cart->delete();
+
 Session::flash('success', 'Payment successful!');
 $total=Cart::where('u_id',Auth::user()->id)->first()->sum('total');
-$poder=ProductOrder::where('o_id',$order->id)->get();
-return view('email.invoice')->with('total',$total)->with('productorder',$poder);
+$productorder=ProductOrder::where('o_id',$order->id)->get();
+Mail::to($order->email)->send(new invoice($total,$productorder));
+$cart->delete();
     return redirect(route('productpage'));
 
 }
@@ -217,12 +241,30 @@ public function stripePost(Request $request,$total)
     $order->paymet_status="Paid";
     $order->save();
     $cart=Cart::where('u_id',Auth::user()->id);
+    $total=Cart::where('u_id',Auth::user()->id)->first()->sum('total');
+$productorder=ProductOrder::where('o_id',$o_id)->get();
+Mail::to('codemonster20643@gmail.com')->send(new invoice($total,$productorder));
+
     $cart->delete();
 
 
     return redirect(route('productpage'));
 
 }
+
+public function searchp(Request $request){
+    $searchq=$request->searchq;
+    // return $searchq;
+          $products=Product::where('title','LIKE','%%'.$searchq.'%')->where('quantity','>','0')->paginate(20);;
+
+          $count=0;
+          if(Auth::check()){
+            $count=Cart::where('u_id',Auth::user()->id)->get()->count();
+
+        }
+return view('common.product')->with('products',$products)->with('count',$count);
+
+        }
 
 
 }

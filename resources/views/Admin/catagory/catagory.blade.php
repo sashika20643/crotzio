@@ -65,7 +65,7 @@
                             <div class="btn btn-outline-success">Edit</div>
                           </td>
                           <td>
-                            <a href="{{route('DeleteCatagory',$cat->id)}}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger">Delete</a>
+                            <a href="{{route('DeleteCatagory',$cat->id)}}" onclick="confirmation(event)" class="btn btn-outline-danger">Delete</a>
                           </td>
                         </tr>
                         @endforeach

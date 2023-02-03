@@ -16,6 +16,9 @@
 @endif
 
 <section class="inner_page_head">
+
+
+
     <div class="container_fuild">
        <div class="row">
           <div class="col-md-12">
@@ -26,12 +29,29 @@
        </div>
     </div>
  </section>
+
  <section class="product_section layout_padding">
+
     <div class="container">
        <div class="heading_container heading_center">
           <h2>
              Our <span>products</span>
           </h2>
+          <div class="container">
+            <form class=" mt-5" style="width:100%" action="{{route('searchpro')}}" method="POST">
+                @csrf
+                <div class="input-group text-center d-flex justify-content-center">
+                    <div class="form-outline">
+                      <input id="search-focus" style="height:50px" name="searchq" type="search" id="form1" class="form-control" />
+
+                    </div>
+                    <button  type="submit" class="btn btn-primary" style="height:50px">
+                      search
+                    </button>
+                  </div>
+            </form>
+          </div>
+
        </div>
        <div class="row">
     @foreach ($products as $product )
@@ -41,7 +61,7 @@
              <div class="box">
                 <div class="option_container">
                    <div class="options">
-                      <a class="option1" data-toggle="modal" data-target="#model{{$product->id}}">
+                      <a class="option1" href="{{route('productdetailpage',$product->id)}}">
                         Show details
                       </a>
                       <form action="{{route('addtocart',$product->id)}}" method="POST">
@@ -78,7 +98,7 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="model{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  {{-- <div class="modal fade" id="model{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -114,7 +134,7 @@
 
       </div>
     </div>
-  </div>
+  </div> --}}
 
 
 

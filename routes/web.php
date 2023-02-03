@@ -6,6 +6,7 @@ use App\http\Controllers\shop\ShopController;
 use App\http\Controllers\AdminController;
 use App\http\Controllers\Admin\CatagoryController;
 use App\http\Controllers\Admin\OrderController;
+use App\http\Controllers\CommentController;
 
 
 use App\http\Controllers\Admin\ProductController;
@@ -23,7 +24,9 @@ use App\http\Controllers\Admin\ProductController;
 //.........shop...........
 route::get('/',[ShopController::class,'index'])->name('shophome');
 route::get('/products',[ShopController::class,'productsview'])->name('productpage');
-
+route::get('/productsdetails/{id}',[ShopController::class,'productsdetailview'])->name('productdetailpage');
+//................search.................
+route::post('searchpro',[ShopController::class,'searchp'])->name('searchpro');
 
 
 
@@ -53,6 +56,13 @@ Route::middleware([
     Route::post('/stripe/{total}', [ShopController::class,'stripePost'])->name('stripe.post');
 
 
+//...........comment..............
+route::post('/AddComment/{id}',[CommentController::class,'AddComment'])->name('AddComment');
+route::get('/DeleteComment/{id}',[CommentController::class,'DeleteComment'])->name('DeleteComment');
+
+
+
+
 
 });
 
@@ -76,6 +86,8 @@ Route::prefix('admin/')->middleware([
     route::get('deleteproduct/{id}',[ProductController::class,'DeleteProduct'])->name('DeleteProduct');
     route::get('editproduct/{id}',[ProductController::class,'EditProduct'])->name('EditProduct');
     route::post('updateproduct',[ProductController::class,'updateproduct'])->name('updateproduct');
+    route::post('searchp',[ProductController::class,'searchp'])->name('searchp');
+
 
 
 //...................orders.......................

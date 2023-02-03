@@ -22,7 +22,7 @@
                   <th> Id </th>
                   <th> Image </th>
                   <th> Product Name </th>
-                  <th> description </th>
+
                   <th> quantity </th>
                   <th> catagory </th>
                   <th> price </th>
@@ -47,9 +47,7 @@
 <td>
 {{$item->title}}
 </td>
-<td>
-    {{$item->description}}
-    </td>
+
     <td>
         {{$item->quantity}}
         </td>
@@ -66,7 +64,7 @@
                     <a href="{{route('EditProduct',$item->id)}}" class="btn btn-outline-success">Edit</a>
                   </td>
                   <td>
-                    <a href="{{route('DeleteProduct',$item->id)}}" onclick="return confirm('Are you sure?')" class="btn btn-outline-danger">Delete</a>
+                    <a href="{{route('DeleteProduct',$item->id)}}" onclick="confirmation(event)" class="btn btn-outline-danger">Delete</a>
                   </td>
                 </tr>
                 @endforeach

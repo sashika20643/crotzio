@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\ProductOrder;
 use PDF;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 
 class OrderController extends Controller
@@ -20,8 +22,10 @@ class OrderController extends Controller
     public function completeorder($id){
         $order=Order::where('id',$id)->first();
        $order->deliver_status="deliverd";
-       $order->paymet_status="Completed";
+       $order->paymet_status="paid";
 $order->save();
+Alert::success('Order completed successfully',"You have completed the order");
+
         return redirect()->back()->with('massege','Order completed successfully');
 
     }
@@ -29,7 +33,7 @@ $order->save();
     public function completepayment($id){
         $order=Order::where('id',$id)->first();
 
-       $order->paymet_status="Completed";
+       $order->paymet_status="paid";
 $order->save();
         return redirect()->back()->with('massege','payment completed successfully');
 
@@ -46,4 +50,7 @@ $order->save();
         return $pdf->download('order_details.pdf');
 
     }
+
+
+
 }
