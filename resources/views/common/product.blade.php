@@ -84,8 +84,8 @@
                    </h5>
                    <div>
                     <h6>
-                       <span style="color:red;text-decoration:2px line-through;">{{$product->price}}/=</span>
-                       <span style="color:green;"> {{$product->discount_price}}/=</span>
+                       <span style="color:red;text-decoration:2px line-through;">${{$product->price}}</span>
+                       <span style="color:green;"> ${{$product->discount_price}}</span>
                        </h6>
 
                    </div>

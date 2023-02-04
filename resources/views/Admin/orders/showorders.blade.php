@@ -7,13 +7,13 @@
 
 @include('Admin.components.notify')
 <div class="d-flex justify-content-center text-center flex-column">
-<h1> All Products </h1>
+<h1> All Orders </h1>
 
 <div class="row mt-5">
     <div class="col-12 grid-margin">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Product details</h4>
+          <h4 class="card-title">Order details</h4>
           <div class="table-responsive">
             <table class="table">
               <thead>

@@ -19,9 +19,13 @@
                 <a href="" class="option1">
                   {{$product->catagory}}
                 </a>
-                <a href="{{route('addtocart',$product->id)}}" class="option2">
-                Buy Now
-                </a>
+                <form action="{{route('addtocart',$product->id)}}" method="POST">
+                    @csrf
+                    <input type="number" name="quantity" id="" min="1" max="{{$product->quantity}}" value="1" hidden="true">
+                    <input type="submit" value=" Add to cart"  class="option2">
+
+
+                  </form>
              </div>
           </div>
           <div class="img-box">
@@ -34,8 +38,8 @@
              </h5>
              <div>
               <h6>
-                 <span style="color:red;text-decoration:2px line-through;">{{$product->price}}/=</span>
-                 <span style="color:green;"> {{$product->discount_price}}/=</span>
+                 <span style="color:red;text-decoration:2px line-through;">${{$product->price}}</span>
+                 <span style="color:green;"> ${{$product->discount_price}}</span>
                  </h6>
 
              </div>
