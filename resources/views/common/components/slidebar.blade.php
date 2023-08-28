@@ -11,14 +11,13 @@
                       <div class="detail-box">
                          <h1>
                             <span>
-                            Sale 20% Off
+                             Today 13% Off
                             </span>
                             <br>
                             On Everything
                          </h1>
                          <p>
-                            Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
-                         </p>
+                            Discover impeccable garments of the highest quality. Don't miss this chance to adorn yourself in elegance and comfort.                         </p>
                          <div class="btn-box">
                             <a href="" class="btn1">
                             Shop Now
@@ -36,14 +35,13 @@
                       <div class="detail-box">
                          <h1>
                             <span>
-                            Sale 20% Off
+                            Sale Today
                             </span>
                             <br>
                             On Everything
                          </h1>
                          <p>
-                            Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
-                         </p>
+                            Discover impeccable garments of the highest quality. Don't miss this chance to adorn yourself in elegance and comfort.                         </p>
                          <div class="btn-box">
                             <a href="" class="btn1">
                             Shop Now
@@ -61,13 +59,13 @@
                       <div class="detail-box">
                          <h1>
                             <span>
-                            Sale 20% Off
+                            High quality
                             </span>
                             <br>
-                            On Everything
+                            Best price
                          </h1>
                          <p>
-                            Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
+                            Discover impeccable garments of the highest quality. Don't miss this chance to adorn yourself in elegance and comfort.                         </p>
                          </p>
                          <div class="btn-box">
                             <a href="" class="btn1">

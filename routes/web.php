@@ -24,6 +24,10 @@ use App\http\Controllers\Admin\ProductController;
 //.........shop...........
 route::get('/',[ShopController::class,'index'])->name('shophome');
 route::get('/products',[ShopController::class,'productsview'])->name('productpage');
+route::get('/about',[ShopController::class,'aboutus'])->name('aboutuspage');
+route::get('/contact',[ShopController::class,'contact'])->name('contactuspage');
+
+
 route::get('/productsdetails/{id}',[ShopController::class,'productsdetailview'])->name('productdetailpage');
 //................search.................
 route::post('searchpro',[ShopController::class,'searchp'])->name('searchpro');

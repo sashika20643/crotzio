@@ -16,7 +16,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check()){
+
             //checking usere role. admin==1/user==0
             if(Auth::user()->usertype==1){
                 return $next($request);
@@ -25,11 +25,7 @@ class AdminMiddleware
                 return redirect('/home')->with('message','Access Denied.You are not the Admin ');
 
             }
-        }
-        else{
-            return redirect('/login')->with('message','Access Denied.Please Login first');
 
-        }
 
         return $next($request);
     }

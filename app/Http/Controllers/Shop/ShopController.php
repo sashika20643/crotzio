@@ -45,6 +45,26 @@ return view('common.product')->with('products',$products)->with('count',$count);
     }
 
 
+    public function aboutus(){
+        $count=0;
+        if(Auth::check()){
+            $count=Cart::where('u_id',Auth::user()->id)->get()->count();
+
+        }
+return view('common.aboutus')->with('count',$count);
+
+    }
+
+
+    public function contactus(){
+        $count=0;
+        if(Auth::check()){
+            $count=Cart::where('u_id',Auth::user()->id)->get()->count();
+
+        }
+return view('common.contactus')->with('count',$count);
+
+    }
 
     public function productsdetailview($id){
         $products=Product::where('id',$id)->first();

@@ -97,11 +97,10 @@
                 </div>
                 <div class="detail-box">
                    <h5>
-                      Fast Delivery
+                    Swift Shipping
                    </h5>
                    <p>
-                      variations of passages of Lorem Ipsum available
-                   </p>
+                    Get your orders in record time with our fast delivery service.                   </p>
                 </div>
              </div>
           </div>
@@ -215,7 +214,7 @@
                       Free Shiping
                    </h5>
                    <p>
-                      variations of passages of Lorem Ipsum available
+                    Enjoy free delivery on all orders, our treat to you.
                    </p>
                 </div>
              </div>
@@ -236,7 +235,7 @@
                       Best Quality
                    </h5>
                    <p>
-                      variations of passages of Lorem Ipsum available
+                    Experience the pinnacle of quality with our products.
                    </p>
                 </div>
              </div>
