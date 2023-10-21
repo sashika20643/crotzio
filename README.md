@@ -16,4 +16,4 @@ Features:
     Report Generation: Robust reporting tools to analyze sales data, track inventory, and gain insights into user behavior.
     Automated Bill Email Sending: Streamlining the purchase process by automatically sending bills to users via email upon successful transactions.
     
-    ![crotzio](https://github.com/sashika20643/crotzio/assets/73024901/675c7f22-0b5c-4ae0-96c2-9ea7e3474602)
+![crotzio](https://github.com/sashika20643/crotzio/assets/73024901/978c523e-9589-4ebc-9ee2-6cb64fb7a9a5)
